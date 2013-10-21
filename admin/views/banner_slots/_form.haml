@@ -1,0 +1,31 @@
+- error = @banner_slot.errors.include?(:slot_name)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :slot_name, :class => 'control-label'
+  .controls
+    =f.text_field :slot_name, :class => 'form-control input-large input-with-feedback', :autofocus => true
+    %span.help-inline=error ? f.error_message_on(:slot_name, :class => 'text-error') : pat(:example)
+
+- [:valid_from, :valid_till].each do |attr|
+  - error = @banner_slot.errors.include?(attr)
+  %fieldset.control-group{:class => error ? 'has-error' : ''}
+    =f.label attr, :class => 'control-label'
+    .controls
+      =f.text_field attr, :class => 'form-control input-large input-with-feedback', :autofocus => true
+      %span.help-inline=error ? f.error_message_on(attr, :class => 'text-error') : 'Hour [0..23]'
+
+
+- error = @banner_slot.errors.include?(:banner_content_ids)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :banner_content_ids, :class => 'control-label'
+  .controls
+    =f.select :banner_content_ids, :collection => BannerContent.all, :fields => [:banner_label, :id], :multiple => true, :size => 20, :class => 'form-control input-large input-with-feedback', :autofocus => true
+    - if error
+      %span.help-inline= f.error_message_on(:banner_content_ids, :class => 'text-error')
+
+
+.form-actions
+  =f.submit pat(:save), :class => 'btn btn-primary'
+  &nbsp;
+  =f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
+  &nbsp;
+  =link_to pat(:cancel), url(:banner_slots, :index), :class => 'btn btn-default'

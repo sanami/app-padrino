@@ -1,0 +1,20 @@
+be padrino g project banners -t rspec -e haml -d mongoid -s jquery -c scss
+
+padrino g model BannerSlot
+
+padrino g model BannerContent html_content:text
+
+padrino g admin
+
+padrino g admin_page
+padrino g admin_page BannerContent
+padrino g admin_page BannerSlot
+
+padrino g controller Banners get:index get:show
+
+----------------------------------------------------------------------------- db
+br mi:create_indexes
+
+br db:seed
+
+br db:seed:banners[slot_count,content_count,max_content_per_slot]

@@ -1,0 +1,7 @@
+%ul.nav.nav-tabs
+  %li=link_to tag_icon(:list, pat(:list)), url(:banner_slots, :index)
+  %li.active=link_to tag_icon(:plus, pat(:new)), url(:banner_slots, :new)
+
+.tabs-content
+  -form_for :banner_slot, url(:banner_slots, :create), :class => 'form-horizontal' do |f|
+    =partial 'banner_slots/form', :locals => { :f => f }

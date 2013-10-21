@@ -1,0 +1,10 @@
+%ul
+  - @banner_slots.each do |slot|
+    %li
+      = link_to slot.slot_name, "?slot=#{slot.slot_name}"
+
+%ul
+  - @banner_slots.each_slice(3) do |slots|
+    %li
+      - slot_names = slots.map(&:slot_name)
+      = link_to slot_names, "?slot=#{slot_names.join(',')}"

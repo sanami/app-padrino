@@ -1,0 +1,10 @@
+---
+:orm: mongoid
+:test: rspec
+:mock: none
+:script: jquery
+:renderer: haml
+:stylesheet: scss
+:namespace: Banners
+:migration_format: number
+:admin_renderer: haml
